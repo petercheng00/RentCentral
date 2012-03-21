@@ -1,0 +1,22 @@
+.wrapper
+  %div#container
+    %h2 All Listings
+
+    %table#listings
+      %thread
+        %tr
+          %tr
+            %th Rent
+            %th Address
+            %th Title
+            %th Rooms
+            %th Details
+      %tbody
+        - @listings.each do |listing|
+          %tr
+            %td= listing.rent
+            %td= listing.address
+            %td= listing.title
+            %td= listing.number_of_rooms
+            %td= link_to "See more", listing_path(listing)
+

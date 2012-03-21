@@ -1,0 +1,19 @@
+%h2 #{@listing.title}
+
+%u1#details
+  %li
+    Address:
+    = @listing.address
+  %li
+    Rent:
+    = @listing.price
+  %li
+    Rooms:
+    = @listing.number_of_rooms
+  %li
+    Utilities:
+    = @listing.utilities
+  %li
+    Parking:
+    = @listing.parking
+    

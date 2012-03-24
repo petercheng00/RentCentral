@@ -1,22 +1,32 @@
 .wrapper
-  %div#container
-    %h2 All Listings
-
-    %table#listings
-      %thread
-        %tr
+  #container
+    #content
+      %h2 All Listings
+      %table#listings
+        %thead
           %tr
             %th Rent
             %th Address
             %th Title
             %th Rooms
             %th Details
-      %tbody
-        - @listings.each do |listing|
-          %tr
-            %td= listing.rent
-            %td= listing.address
-            %td= listing.title
-            %td= listing.number_of_rooms
-            %td= link_to "See more", listing_path(listing)
-
+        %tbody
+          - @listings.each do |listing|
+            %tr.dark
+              %td= listing.rent
+              %td= listing.address
+              %td= listing.title
+              %td= listing.number_of_rooms
+              %td= link_to "See more", listing_path(listing)
+      #comments
+        %h2 Announcements
+        %ul.commentlist
+          %li.comment_odd
+            .author
+              %span.name Peter
+              %span.wrote wrote:
+              .submitdate March 24, 2012
+              %p Welcome to RentCentral!
+    #column
+      .subnav
+        %h2 Search Options

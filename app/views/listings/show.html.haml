@@ -1,27 +1,31 @@
-%h2 #{@listing.title}
-
-%u1#details
-  %li
-    Address:
-    = @listing.address
-  %li
-    Rent:
-    = @listing.rent
-  %li
-    Rooms:
-    = @listing.number_of_rooms
-  %li
-    Utilities:
-    = @listing.utilities
-  %li
-    Parking:
-    = @listing.parking
-
-%h3 Description:
-
-%p#description = @listing.description
-
-= button_to 'Edit this listing', edit_listing_path(@listing)
-= button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
-= link_to 'Back to all listings', listings_path
-    
+.wrapper
+  #container
+    #content
+      %h2 #{@listing.title}
+      %p#description 
+      = @listing.description
+      
+    #column
+      %h2 Summary
+      %u1#details
+        %li
+          Address:
+          = @listing.address
+        %li
+          Rent:
+          = @listing.rent
+        %li
+          Rooms:
+          = @listing.number_of_rooms
+        %li
+          Utilities:
+          = @listing.utilities
+        %li
+          Parking:
+          = @listing.parking
+        
+      
+      = button_to 'Edit this listing', edit_listing_path(@listing)
+      = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
+      = link_to 'Back to all listings', listings_path
+          

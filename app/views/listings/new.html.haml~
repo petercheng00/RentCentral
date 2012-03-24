@@ -8,14 +8,16 @@
   = label :listing, :address, 'Address'
   = text_field :listing, 'address'
 
-  = label :listing, :price, 'Rent'
+  = label :listing, :rent, 'Rent'
   = number_field :listing, 'rent'
 
   = label :listing, :number_of_rooms, 'Number of Rooms'
-  = text_field :listing, 'number_of_rooms'
+  = number_field :listing, 'number_of_rooms'
 
   = label :listing, :utilities, 'Included Utilities'
   = text_field :listing, 'utilities'
 
   = label :listing, :parking, 'Parking'
   = text_field :listing, 'parking'
+
+  = submit_tag 'Post my Listing'

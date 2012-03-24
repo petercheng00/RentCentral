@@ -6,14 +6,16 @@
     = csrf_meta_tags
   %body#top
     .wrapper
-      %div#header
-        %div#logo
+      #header
+        #logo
           %h1 RentCentral
           %p A cool tagline goes here
-        %div#topnav
+        #topnav
           %ul
             %li
               = link_to 'All Listings', listings_path
+            %li
+              = link_to 'My Listings', listings_path
             %li 
               = link_to 'Post a Listing', new_listing_path
         %br.clear

@@ -11,8 +11,13 @@
             %th Rooms
             %th Details
         %tbody
+          -rowColor = 'light'
           - @listings.each do |listing|
-            %tr.dark
+            - if rowColor == 'light'
+              -rowColor = 'dark'
+            - else
+              -rowColor = 'light'
+            %tr{:class => rowColor}
               %td= listing.rent
               %td= listing.address
               %td= listing.title

@@ -14,6 +14,8 @@ RentCentral::Application.routes.draw do
      resources :listings
      resources :users
 
+      match "/" => "listings#home"
+
   # Sample resource route with options:
   #   resources :products do
   #     member do

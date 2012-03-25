@@ -1,4 +1,6 @@
 class ListingsController < ApplicationController
+  def home
+  end
   def index
     @listings = Listing.all
   end
@@ -18,20 +20,20 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    @movie = Listing.find params[:id]
+    @listing = Listing.find params[:id]
   end
 
   def update
     @listing = Listing.find params[:id]
     @listing.update_attributes!(params[:listing])
     flash[:notice] = "Your listing has been updated"
-    redirect_to_listing_path(@listing)
+    redirect_to listings_path(@listing)
   end
 
   def destroy
-    @listing - LIsting.find(params[:id])
+    @listing = Listing.find(params[:id])
     @listing.destroy
     flash[:notice] = "Your listing has been deleted"
-    redirect_to movies_path
+    redirect_to listings_path
   end
 end

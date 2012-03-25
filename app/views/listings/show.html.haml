@@ -1,16 +1,19 @@
-.wrapper
-  #container
-    #content
-      %h2 #{@listing.title}
-      %p#description 
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 
+      = @listing.title
+    #breadcumb 
+      = @listing.address
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
+      %p#description
       = @listing.description
-      
-    #column
+    .col-3
       %h2 Summary
       %u1#details
-        %li
-          Address:
-          = @listing.address
         %li
           Rent:
           = @listing.rent
@@ -25,7 +28,7 @@
           = @listing.parking
         
       
-      = button_to 'Edit this listing', edit_listing_path(@listing)
+      = button_to 'Edit this listing', edit_listing_path(@listing), :method => :get
       = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
       = link_to 'Back to all listings', listings_path
           

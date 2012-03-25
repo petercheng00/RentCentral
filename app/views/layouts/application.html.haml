@@ -1,22 +1,55 @@
 %html
   %head
     %title Rent Central
-    = stylesheet_link_tag 'layout'
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'style'
+    = stylesheet_link_tag 'custom-style'
+    = stylesheet_link_tag 'colorbox'
+    = stylesheet_link_tag 'noscript'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'jquery.min'
+    = javascript_include_tag 'scroll'
+    = javascript_include_tag 'dropdown'
+    = javascript_include_tag 'jquery.colorbox'
+    :javascript
+      //Login Colorbox
+      $(document).ready(function(){				
+        $(".login").colorbox({width:"400px"});				
+      });
+
+      // Background Slide Setting    
+      var scrollSpeed = 50; // speed in milliseconds	
+      var current = 0; // set the default position	
+      var direction = 'h'; // set the direction
+      function bgscroll(){
+        current -= 1;  
+        $('div#glow-bg-inner').css("backgroundPosition", (direction == 'h') ? current+"px 0" : "0 " + current+"px");   
+      }
+      setInterval("bgscroll()", scrollSpeed);	
     = csrf_meta_tags
-  %body#top
-    .wrapper
-      #header
-        #logo
-          %h1 RentCentral
-          %p A cool tagline goes here
-        #topnav
-          %ul
-            %li
-              = link_to 'All Listings', listings_path
-            %li
-              = link_to 'My Listings', listings_path
-            %li 
-              = link_to 'Post a Listing', new_listing_path
-        %br.clear
-    = yield
+  %body
+    #container
+      #top-container-inner
+        #glow-bg-inner
+          #menu-wrapper
+            #menu-container
+              #logo
+                RentCentral Image goes here
+              #mainmenu
+                %ul#menu
+                  %li
+                    = link_to 'Home', '/'
+                  %li
+                    = link_to 'All Listings', listings_path
+                  %li
+                    = link_to 'My Listings', listings_path
+                  %li 
+                    = link_to 'Post a Listing', new_listing_path
+                  %li
+                    = link_to 'My Account', '/'
+                    %ul
+                      %li
+                      = link_to 'Profile', '/'
+                      %li
+                      = link_to 'Logout', '/'
+          = yield

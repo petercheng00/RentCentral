@@ -1,0 +1,33 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 Edit Listing
+    #breadcumb
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
+      = form_tag listing_path(@listing), :method => :put do
+        = label :listing, :title, 'Title'
+        = text_field :listing, 'title'
+        = label :listing, :address, 'Address'
+        = text_field :listing, 'address' 
+        = label :listing, :rent, 'Rent'
+        = number_field :listing, 'rent'
+        = label :listing, :number_of_rooms, 'Number of Rooms'
+        = number_field :listing, 'number_of_rooms'
+        = label :listing, :utilities, 'Included Utilities'
+        = text_field :listing, 'utilities'
+        = label :listing, :parking, 'Parking'
+        = text_field :listing, 'parking'
+        = label :listing, :description, 'Enter Details Here'
+        = text_area :listing, 'description', :cols => 80, :rows => 10
+        = submit_tag 'Post my Listing'
+    .col-3
+      %h2 Listing Rules
+      %u1#details
+        %li Don't break this rule
+        %li Don't do this thing
+        %li something else
+
+

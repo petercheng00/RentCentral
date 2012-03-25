@@ -1,37 +1,39 @@
-.wrapper
-  #container
-    #content
-      %h2 All Listings
-      %table#listings
-        %thead
-          %tr
-            %th Rent
-            %th Address
-            %th Title
-            %th Rooms
-            %th Details
-        %tbody
-          -rowColor = 'light'
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 All Listings
+    #breadcumb some sort of subtitle
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
+      .table-gray
+        
+        %table.table
+          %thead
+            %tr
+              %th
+                = link_to 'Rent', listings_path(:sort => 'rent', :filter => @filters)
+              %th Title
+              %th Address
+              %th Details
+          %tbody
+          -odd = 'odd'
           - @listings.each do |listing|
-            - if rowColor == 'light'
-              -rowColor = 'dark'
+            - if odd == 'odd'
+              -odd = ''
             - else
-              -rowColor = 'light'
-            %tr{:class => rowColor}
+              -odd = 'odd'
+            %tr{:class => odd}
               %td= listing.rent
-              %td= listing.address
               %td= listing.title
-              %td= listing.number_of_rooms
+              %td= listing.address
               %td= link_to "See more", listing_path(listing)
-      #comments
-        %h2 Announcements
-        %ul.commentlist
-          %li.comment_odd
-            .author
-              %span.name Peter
-              %span.wrote wrote:
-              .submitdate March 24, 2012
-              %p Welcome to RentCentral!
-    #column
-      .subnav
-        %h2 Search Options
+    .col-3
+      %h2 Search Options
+      = form_tag listings_path, :method => :get, :id => 'filter_form' do
+        Minimum Rent
+        = text_field :minRent, :value => "Minimum Rent"
+        Maximum Rent
+        = text_field :maxRent, :value => "Maximum Rent"
+        = submit_tag 'Refresh'

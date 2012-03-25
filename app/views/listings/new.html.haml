@@ -1,41 +1,29 @@
-
-.wrapper
-  #container
-    #content
-      %h1 Create a New Listing
-  
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 Create a New Listing
+    #breadcumb
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
       = form_tag listings_path do
-      
         = label :listing, :title, 'Title'
-        <br>
         = text_field :listing, 'title'
-        <br>
         = label :listing, :address, 'Address'
-        <br>
         = text_field :listing, 'address' 
-        <br>
         = label :listing, :rent, 'Rent'
-        <br>
         = number_field :listing, 'rent'
-        <br>
         = label :listing, :number_of_rooms, 'Number of Rooms'
-        <br>
         = number_field :listing, 'number_of_rooms'
-        <br>
         = label :listing, :utilities, 'Included Utilities'
-        <br>
         = text_field :listing, 'utilities'
-        <br>
         = label :listing, :parking, 'Parking'
-        <br>
         = text_field :listing, 'parking'
-        <br>
         = label :listing, :description, 'Enter Details Here'
-        <br>
         = text_area :listing, 'description', :cols => 80, :rows => 10
-        <br>
         = submit_tag 'Post my Listing'
-    #column
+    .col-3
       %h2 Listing Rules
       %u1#details
         %li Don't break this rule

@@ -1,0 +1,15 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 Welcome to RentCentral! Choose an option below to get started.
+    #breadcumb some sort of subtitle
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2
+      %h1
+        View Listings
+    .col-2
+      %h1
+        Post a Listing
+

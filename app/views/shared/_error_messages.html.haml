@@ -1,0 +1,6 @@
+- if @user.errors.any?
+  Please fix the following errors to continue
+  %ul
+  - @user.errors.full_messages.each do |msg|
+    %li= msg
+  <br>

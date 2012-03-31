@@ -1,0 +1,7 @@
+if @user.errors.any?
+  #error_explanation
+    %h2 = pluralize(@user.errors.count, "error")
+    %p The following errors need to be fixed:
+    %ul
+    @user.errors.full_messages.each do |msg|
+      %li = msg

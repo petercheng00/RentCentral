@@ -1,0 +1,27 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 Signup
+    #breadcumb
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
+      = form_tag users_path do
+        = label :user, :name, 'Username'
+        = text_field :user, 'name'
+        = label :user, :email, 'Email Address'
+        = text_field :user, 'email' 
+        = label :user, :phone, 'Phone Number (optional)'
+        = text_field :user, 'phone'
+        = label :user, :password, 'Password'
+        = text_field :user, 'password'
+        = label :user, :password_confirmation, 'Confirm Password'
+        = text_field :user, 'password_confirmation'
+        = submit_tag 'Sign up!'
+    .col-3
+      %h2 User Rules
+      %u1#details
+        %li Don't break this rule
+        %li Don't do this thing
+        %li something else

@@ -1,4 +1,6 @@
 RentCentral::Application.routes.draw do
+  get "sessions/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -13,8 +15,12 @@ RentCentral::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
      resources :listings
      resources :users
+     resources :sessions, :only => [:new, :create, :destroy]
 
      match "/" => "listings#home"
+     match "/signup" => "users#new"
+     match "/signin" => "sessions#new"
+     match "/signout" => "sessions#destroy"
 
   # Sample resource route with options:
   #   resources :products do

@@ -1,0 +1,22 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 Sign in
+    #breadcumb
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2-2
+      = form_for (:session, :url => sessions_path) do |f|
+        .field
+          = label :user, :email, 'Email Address'
+          = text_field :user, 'email'
+        .field
+          = label :user, :password, 'Password'
+          = password_field :user, 'password'
+    .col-3
+      %h2 Something can go here
+      %u1#details
+        %li Don't break this rule
+        %li Don't do this thing
+        %li something else

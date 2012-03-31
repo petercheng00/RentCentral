@@ -1,0 +1,15 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    %h1 
+      = @user.name
+    #breadcumb 
+      = @user.email
+      = @user.phone
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-2
+      %h2 Posted Listings
+    .col-2
+      %h2 Watched Listings

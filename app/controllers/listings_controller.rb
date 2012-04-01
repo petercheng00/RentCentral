@@ -58,8 +58,7 @@ class ListingsController < ApplicationController
       current_user.watched_listings << @listing
       current_user.save!
     end
-    debugger
-    redirect_to '/'
+    redirect_to listings_path(@listing)
   end
 
   def edit

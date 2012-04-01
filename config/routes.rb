@@ -21,6 +21,7 @@ RentCentral::Application.routes.draw do
      match "/signup" => "users#new"
      match "/signin" => "sessions#new"
      match "/signout" => "sessions#destroy"
+     match "/watch" => "listings#watch"
 
   # Sample resource route with options:
   #   resources :products do

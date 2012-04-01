@@ -15,6 +15,9 @@
       %h2 Summary
       %u1#details
         %li
+          Posted By:
+          = link_to @listing.user.name, user_path(@listing.user)
+        %li
           Rent:
           = @listing.rent
         %li
@@ -26,9 +29,18 @@
         %li
           Parking:
           = @listing.parking
-        
+        <br>
+        - if @listing.watchers.length == 1
+          %h4= String(@listing.watchers.length) + " Watcher:"
+        - else
+          %h4= String(@listing.watchers.length) + " Watchers:"
+        - @listing.watchers.each do |watcher|
+          = link_to watcher.name, users_path(watcher)
+          <br>
+      - if signed_in? && !current_user.watched_listings.include?(@listing) && @listing.user != current_user
+        = button_to 'Watch this listing', {:controller => "listings", :action => "watch", :id => params[:id]}
+      - if signed_in? && @listing.user.id == current_user.id      
+        = button_to 'Edit this listing', edit_listing_path(@listing), :method => :get
+        = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
       
-      = button_to 'Edit this listing', edit_listing_path(@listing), :method => :get
-      = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
-      = link_to 'Back to all listings', listings_path
           

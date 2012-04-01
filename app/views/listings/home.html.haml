@@ -14,5 +14,8 @@
     .col-2
       .center
         %h1
-          =link_to "Post a Listing", new_listing_path
+          - if signed_in?
+            =link_to "Post a Listing", new_listing_path
+          - else
+            =link_to "Post a Listing", signin_path
 

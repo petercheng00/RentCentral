@@ -37,9 +37,29 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.create!(params[:listing])
-    flash[:notice] = "Your listing has been created"
-    redirect_to listings_path
+    if !signed_in?
+      flash[:notice] = "You must be signed in to post a listing"
+      redirect_to signin_path
+    else
+      listingParams = params[:listing]
+      @listing = current_user.listings.create(listingParams)
+      flash[:notice] = "Your listing has been created"
+      redirect_to listings_path
+    end
+  end
+
+  def watch
+    @listing = Listing.find params[:id]
+    if !(@listing.watchers.include?(current_user))
+      @listing.watchers << current_user
+      @listing.save!
+    end
+    if !(current_user.watched_listings.include?(@listing))
+      current_user.watched_listings << @listing
+      current_user.save!
+    end
+    debugger
+    redirect_to '/'
   end
 
   def edit
@@ -48,15 +68,23 @@ class ListingsController < ApplicationController
 
   def update
     @listing = Listing.find params[:id]
-    @listing.update_attributes!(params[:listing])
-    flash[:notice] = "Your listing has been updated"
-    redirect_to listings_path(@listing)
+    if @listing.user.id != current_user.id
+      redirect_to listings_path(@listing)
+    else
+      @listing.update_attributes!(params[:listing])
+      flash[:notice] = "Your listing has been updated"
+      redirect_to listings_path(@listing)
+    end
   end
 
   def destroy
     @listing = Listing.find(params[:id])
-    @listing.destroy
-    flash[:notice] = "Your listing has been deleted"
-    redirect_to listings_path
+    if @listing.user.id != current_user.id
+      redirect_to listings_path
+    else
+      @listing.destroy
+      flash[:notice] = "Your listing has been deleted"
+      redirect_to listings_path
+    end
   end
 end

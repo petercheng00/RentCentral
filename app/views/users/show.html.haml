@@ -12,5 +12,52 @@
   .maincontent-inner
     .col-2
       %h2 Posted Listings
+      .table-gray
+        %table.table
+          %thead
+            %tr
+              %th Rent
+              %th Title
+              %th Address
+              %th Rooms
+              %th Details
+          %tbody
+          -odd = 'odd'
+          - @user.listings.each do |listing|
+            - if odd == 'odd'
+              -odd = ''
+            - else
+              -odd = 'odd'
+            %tr{:class => odd}
+              %td= "$" + String(listing.rent)
+              %td= listing.title
+              %td= listing.address
+              %td= listing.number_of_rooms
+              %td= link_to "See more", listing_path(listing)
+
+
+
     .col-2
       %h2 Watched Listings
+      .table-gray
+        %table.table
+          %thead
+            %tr
+              %th Rent
+              %th Title
+              %th Address
+              %th Rooms
+              %th Details
+          %tbody
+          -odd = 'odd'
+          - @user.watched_listings.each do |listing|
+            - if odd == 'odd'
+              -odd = ''
+            - else
+              -odd = 'odd'
+            %tr{:class => odd}
+              %td= "$" + String(listing.rent)
+              %td= listing.title
+              %td= listing.address
+              %td= listing.number_of_rooms
+              %td= link_to "See more", listing_path(listing)

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   has_many :listings
+  has_and_belongs_to_many :watched_listings, :class_name => "Listing", :foreign_key => "watcher_id", :association_foreign_key => "watched_listing_id"
+
   attr_accessor :password
   attr_accessible :name, :email, :phone, :password, :password_confirmation
 

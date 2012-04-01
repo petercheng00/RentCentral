@@ -35,7 +35,7 @@
         - else
           %h4= String(@listing.watchers.length) + " Watchers:"
         - @listing.watchers.each do |watcher|
-          = link_to watcher.name, users_path(watcher)
+          = link_to watcher.name, user_path(watcher)
           <br>
       - if signed_in? && !current_user.watched_listings.include?(@listing) && @listing.user != current_user
         = button_to 'Watch this listing', {:controller => "listings", :action => "watch", :id => params[:id]}

@@ -2,20 +2,34 @@
   #phone-number
   #pagetitle-wrapper
     .center
-      %h1 Welcome to RentCentral! <br /> Choose an option below to get started.
-      #breadcumb You can view others' listings or post your own!
+      %h1 Welcome to RentCentral! <br /> Choose an option above to get started.
+      #breadcumb This site is currently under construction!
   #slideshow-shadow
 #content
   .maincontent-inner
     .col-2
       .center
-        %h1
-          =link_to "View Listings", listings_path
+        %h2
+          Why use RentCentral?
+      <br>
+      %b Landlords get
+      %u1
+        %li Permanent and publicly viewable listings
+        %li Central location for advertising and hosting needs
+      <br>
+      %b House-hunters get
+      %u1
+        %li Direct communication with landlords and potential roommates
+        %li Uniform and searchable database of listings
     .col-2
       .center
-        %h1
-          - if signed_in?
-            =link_to "Post a Listing", new_listing_path
-          - else
-            =link_to "Post a Listing", signin_path
+        %h2
+          Things to Come
+        <br>
+      %b Stay tuned for:
+      %u1
+        %li Location-based searching
+        %li Messaging system
+        %li Online application forms
+        %li Rating and reviewing system
 

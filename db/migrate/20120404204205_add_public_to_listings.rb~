@@ -1,0 +1,4 @@
+class AddPublicToListings < ActiveRecord::Migration
+  def change
+  end
+end

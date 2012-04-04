@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120401091003) do
+ActiveRecord::Schema.define(:version => 20120404204205) do
 
   create_table "listings", :force => true do |t|
     t.string  "title"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20120401091003) do
     t.string  "parking"
     t.string  "address"
     t.integer "user_id"
+    t.boolean "is_active",                      :default => true
+    t.boolean "is_public",                      :default => true
   end
 
   create_table "listings_users", :id => false, :force => true do |t|

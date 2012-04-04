@@ -18,7 +18,6 @@
               %th Address
               %th
                 = link_to 'Rooms', listings_path(:sort => 'rooms', :filter => params[:filter])
-              %th Details
           %tbody
           -odd = 'odd'
           - @listings.each do |listing|
@@ -28,10 +27,9 @@
               -odd = 'odd'
             %tr{:class => odd}
               %td= "$" + String(listing.rent)
-              %td= listing.title
+              %td= link_to listing.title, listing_path(listing)
               %td= listing.address
               %td= listing.number_of_rooms
-              %td= link_to "See more", listing_path(listing)
     .col-3
       %h2 Search Options
       = form_tag listings_path, :method => :get, :id => 'filter_form' do

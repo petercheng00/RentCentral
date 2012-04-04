@@ -26,6 +26,7 @@ class ListingsController < ApplicationController
     minRooms = params[:minRooms] || -2147483647
     maxRooms = params[:maxRooms] || 2147483647
     @listings = Listing.find(:all, :conditions => ["rent > ? AND rent < ? AND number_of_rooms > ? AND number_of_rooms < ?", minRent, maxRent, minRooms, maxRooms], :order => ordering)
+    @listings = @listings.find_all{|l| l.is_public && l.is_active}
   end
 
   def show
@@ -46,6 +47,20 @@ class ListingsController < ApplicationController
       flash[:notice] = "Your listing has been created"
       redirect_to listings_path
     end
+  end
+
+  def change_public
+    @listing = Listing.find params[:id]
+    @listing.is_public = !@listing.is_public
+    @listing.save!
+    redirect_to listing_path(@listing)
+  end
+
+  def change_active
+    @listing = Listing.find params[:id]
+    @listing.is_active = !@listing.is_active
+    @listing.save!
+    redirect_to listing_path(@listing)
   end
 
   def watch

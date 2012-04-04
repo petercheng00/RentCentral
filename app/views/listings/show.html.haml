@@ -13,6 +13,11 @@
       = @listing.description
     .col-3
       %h2 Summary
+      - if !@listing.is_active
+        <i>This listing is currently inactive</i><br>
+      - if !@listing.is_public
+        <i>This is a private listing</i><br><br>
+      Details
       %u1#details
         %li
           Posted By:
@@ -39,7 +44,17 @@
           <br>
       - if signed_in? && !current_user.watched_listings.include?(@listing) && @listing.user != current_user
         = button_to 'Watch this listing', {:controller => "listings", :action => "watch", :id => params[:id]}
-      - if signed_in? && @listing.user.id == current_user.id      
+      - if signed_in? && @listing.user.id == current_user.id
+        <br>
+        %h4 Options
+        - if @listing.is_active
+          = button_to 'Suspend this listing', {:controller => "listings", :action => "change_active", :id => params[:id]}
+        - else
+          = button_to 'Reactivate this listing', {:controller => "listings", :action => "change_active", :id => params[:id]}
+        - if @listing.is_public
+          = button_to 'Make this listing private', {:controller => "listings", :action => "change_public", :id => params[:id]}
+        - else
+          = button_to 'Make this listing public', {:controller => "listings", :action => "change_public", :id => params[:id]}
         = button_to 'Edit this listing', edit_listing_path(@listing), :method => :get
         = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
       

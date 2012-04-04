@@ -9,8 +9,26 @@
 #content
   .maincontent-inner
     .col-2-2
+      %h2 Description
       %p#description
       = @listing.description
+      <hr>
+      %h4 Comments
+      = form_for([@listing, @listing.comments.build]) do |f|
+        = f.label :author
+        = f.text_field :author
+        <br>
+        = f.label :body
+        = f.text_area :body, :cols => "60", :rows => "5"
+        <br>
+        = f.submit
+      - @listing.comments.each do |comment|
+        - if comment.author != nil && comment.post_time != nil && comment.body != nil
+          <hr>
+          = "Posted by \"" + comment.author + "\" at " + (comment.post_time.to_s)[0,20]
+          <br>
+          = comment.body
+
     .col-3
       %h2 Summary
       - if !@listing.is_active

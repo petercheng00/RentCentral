@@ -45,7 +45,7 @@ class ListingsController < ApplicationController
       listingParams = params[:listing]
       @listing = current_user.listings.create(listingParams)
       flash[:notice] = "Your listing has been created"
-      redirect_to listings_path
+      redirect_to listing_path(@listing)
     end
   end
 

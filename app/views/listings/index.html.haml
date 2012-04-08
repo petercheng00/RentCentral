@@ -17,7 +17,7 @@
               %th Title
               %th Address
               %th
-                = link_to 'Rooms', listings_path(:sort => 'rooms', :filter => params[:filter])
+                = link_to 'Bedrooms', listings_path(:sort => 'rooms', :filter => params[:filter])
           %tbody
           -odd = 'odd'
           - @listings.each do |listing|
@@ -29,7 +29,7 @@
               %td= "$" + String(listing.rent)
               %td= link_to listing.title, listing_path(listing)
               %td= listing.address
-              %td= listing.number_of_rooms
+              %td= listing.number_bedrooms
     .col-3
       %h2 Search Options
       = form_tag listings_path, :method => :get, :id => 'filter_form' do
@@ -37,9 +37,9 @@
         = number_field_tag :minRent, params[:minRent]
         <br>Maximum Rent<br>
         = number_field_tag :maxRent, params[:maxRent]
-        <br>Minimum Rooms<br>
+        <br>Minimum Bedrooms<br>
         = number_field_tag :minRooms, params[:minRooms]
-        <br>Maximum Rooms<br>
+        <br>Maximum Bedrooms<br>
         = number_field_tag :maxRooms, params[:maxRooms]
         <br>
         = submit_tag 'Refresh'

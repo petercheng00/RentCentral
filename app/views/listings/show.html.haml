@@ -8,27 +8,6 @@
   #slideshow-shadow
 #content
   .maincontent-inner
-    .col-2-2
-      %h2 Description
-      %p#description
-      = @listing.description
-      <hr>
-      %h4 Comments
-      = form_for([@listing, @listing.comments.build]) do |f|
-        = f.label :author
-        = f.text_field :author
-        <br>
-        = f.label :body
-        = f.text_area :body, :cols => "60", :rows => "5"
-        <br>
-        = f.submit
-      - @listing.comments.each do |comment|
-        - if comment.author != nil && comment.post_time != nil && comment.body != nil
-          <hr>
-          = "Posted by \"" + comment.author + "\" at " + (comment.post_time.to_s)[0,20]
-          <br>
-          = comment.body
-
     .col-3
       %h2 Summary
       - if !@listing.is_active
@@ -44,8 +23,11 @@
           Rent:
           = @listing.rent
         %li
-          Rooms:
-          = @listing.number_of_rooms
+          Bedrooms:
+          = @listing.number_bedrooms
+        %li
+          Bathrooms:
+          = @listing.number_bathrooms
         %li
           Utilities:
           = @listing.utilities
@@ -75,5 +57,35 @@
           = button_to 'Make this listing public', {:controller => "listings", :action => "change_public", :id => params[:id]}
         = button_to 'Edit this listing', edit_listing_path(@listing), :method => :get
         = button_to 'Delete', listing_path(@listing), :method => :delete, :confirm => 'Are you sure?'
-      
-          
+    .col-2-2
+      %h2 Description
+      %p#description
+      = @listing.description
+      <hr>
+      %h4 Photos
+      - @listing.listing_images.each do |li|
+        = link_to (image_tag li.photo.url(:small)), li.photo.url
+
+      - if signed_in? && @listing.user.id == current_user.id
+        %h4 Upload a photo
+        = form_for([@listing, @listing.listing_images.build]) do |f|
+          = f.label :caption, "File Description"
+          = f.text_field :caption
+          = f.file_field :photo
+          = f.submit "Upload New Photo"
+      <hr>
+      %h4 Comments
+      - @listing.comments.each do |comment|
+        - if comment.author != nil && comment.post_time != nil && comment.body != nil
+          = "Posted by \"" + comment.author + "\" at " + (comment.post_time.to_s)[0,20]
+          <br>
+          = comment.body
+      <hr>
+      = form_for([@listing, @listing.comments.build]) do |f|
+        = f.label :author
+        = f.text_field :author
+        <br>
+        = f.label :body
+        = f.text_area :body, :cols => "60", :rows => "5"
+        <br>
+        = f.submit "Post my Comment"

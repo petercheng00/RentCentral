@@ -19,7 +19,7 @@
               %th Rent
               %th Title
               %th Address
-              %th Rooms
+              %th Bedrooms
           %tbody
           -odd = 'odd'
           - @user.listings.each do |listing|
@@ -31,7 +31,7 @@
               %td= "$" + String(listing.rent)
               %td= link_to listing.title, listing_path(listing)
               %td= listing.address
-              %td= listing.number_of_rooms
+              %td= listing.number_bedrooms
 
     .col-2
       %h2 Watched Listings
@@ -42,7 +42,7 @@
               %th Rent
               %th Title
               %th Address
-              %th Rooms
+              %th Bedrooms
           %tbody
           -odd = 'odd'
           - @user.watched_listings.each do |listing|
@@ -54,4 +54,4 @@
               %td= "$" + String(listing.rent)
               %td= link_to listing.title, listing_path(listing)
               %td= listing.address
-              %td= listing.number_of_rooms
+              %td= listing.number_bedrooms

@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
     when 'rent'
       ordering = "rent ASC"
     when 'rooms'
-      ordering = "number_of_rooms ASC"
+      ordering = "number_bedrooms ASC"
     end
     if params[:minRent] == ""
       params[:minRent] = nil
@@ -25,7 +25,7 @@ class ListingsController < ApplicationController
     maxRent = params[:maxRent] || 2147483647
     minRooms = params[:minRooms] || -2147483647
     maxRooms = params[:maxRooms] || 2147483647
-    @listings = Listing.find(:all, :conditions => ["rent > ? AND rent < ? AND number_of_rooms > ? AND number_of_rooms < ?", minRent, maxRent, minRooms, maxRooms], :order => ordering)
+    @listings = Listing.find(:all, :conditions => ["rent > ? AND rent < ? AND number_bedrooms > ? AND number_bedrooms < ?", minRent, maxRent, minRooms, maxRooms], :order => ordering)
     @listings = @listings.find_all{|l| l.is_public && l.is_active}
   end
 
@@ -35,6 +35,7 @@ class ListingsController < ApplicationController
   end
 
   def new
+    @listing = Listing.new
   end
 
   def create

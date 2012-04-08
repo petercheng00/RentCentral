@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120404212423) do
+ActiveRecord::Schema.define(:version => 20120408053545) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -20,17 +20,29 @@ ActiveRecord::Schema.define(:version => 20120404212423) do
     t.datetime "post_time"
   end
 
+  create_table "listing_images", :force => true do |t|
+    t.string   "caption"
+    t.integer  "listing_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
   create_table "listings", :force => true do |t|
     t.string  "title"
-    t.text    "description",     :limit => 255
+    t.text    "description",      :limit => 255
     t.integer "rent"
-    t.integer "number_of_rooms"
+    t.integer "number_bedrooms"
+    t.integer "number_bathrooms"
     t.string  "utilities"
     t.string  "parking"
     t.string  "address"
     t.integer "user_id"
-    t.boolean "is_active",                      :default => true
-    t.boolean "is_public",                      :default => true
+    t.boolean "is_active",                       :default => true
+    t.boolean "is_public",                       :default => true
   end
 
   create_table "listings_users", :id => false, :force => true do |t|

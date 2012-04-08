@@ -7,22 +7,30 @@
 #content
   .maincontent-inner
     .col-2-2
-      = form_tag listing_path(@listing), :method => :put do
-        = label :listing, :title, 'Title'
-        = text_field :listing, 'title'
-        = label :listing, :address, 'Address'
-        = text_field :listing, 'address' 
-        = label :listing, :rent, 'Rent'
-        = number_field :listing, 'rent'
-        = label :listing, :number_of_rooms, 'Number of Rooms'
-        = number_field :listing, 'number_of_rooms'
-        = label :listing, :utilities, 'Included Utilities'
-        = text_field :listing, 'utilities'
-        = label :listing, :parking, 'Parking'
-        = text_field :listing, 'parking'
-        = label :listing, :description, 'Enter Details Here'
-        = text_area :listing, 'description', :cols => 80, :rows => 10
-        = submit_tag 'Post my Listing'
+      = form_for @listing, :html => {:multipart => true} do |f|
+        = f.label :title, 'Title'
+        = f.text_field 'title'
+        = f.label :address, 'Address'
+        = f.text_field 'address' 
+        = f.label :rent, 'Rent'
+        = f.number_field 'rent'
+        = f.label :number_bedrooms, 'Bedrooms'
+        = f.number_field 'number_bedrooms'
+        = f.label :number_bathrooms, 'Bathrooms'
+        = f.number_field 'number_bathrooms'
+        = f.label :utilities, 'Included Utilities'
+        = f.text_field 'utilities'
+        = f.label :parking, 'Parking'
+        = f.text_field 'parking'
+        = f.label :description, 'Enter Details Here'
+        = f.text_area 'description', :cols => 80, :rows => 10
+        = f.submit 'Post my Listing'
+        - f.fields_for :listing_images do |builder|
+          - if builder.object.new_record?
+            = builder.label :caption, "File Description"
+            = builder.text_field :caption
+            = builder.file_field :photo
+
     .col-3
       %h2 Listing Rules - 
       %u1#details

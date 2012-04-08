@@ -1,0 +1,42 @@
+#header-container-inner
+  #phone-number
+  #pagetitle-wrapper
+    .center
+      %h1 Welcome to RentCentral!
+      #breadcumb
+  #slideshow-shadow
+#content
+  .maincontent-inner
+    .col-3
+      .center
+        %h2
+          = link_to 'Post', new_listing_path
+      <hr>
+      %b Create free listings that are
+      %u1
+        %li Permanent
+        %li Publicly searchable
+        %li Linked with images and application forms
+      <br>
+    .col-3
+      .center
+        %h2
+          = link_to 'Communicate', listings_path
+        <hr>
+      %b Find your tenants
+      %u1
+        %li Advertise your universal listing link
+        %li Provide contact information on your profile
+        %li Respond to comments on your listing
+        %li Facilitate roommate searches
+    .col-3
+      .center
+        %h2
+          = link_to 'Finalize', current_user
+        <hr>
+      %b Hibernate your listings
+      %u1
+        %li Mark your listing as inactive
+        %li Upload leases and contracts
+        %li Reopen your listing when needed
+

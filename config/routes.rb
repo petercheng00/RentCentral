@@ -21,6 +21,7 @@ RentCentral::Application.routes.draw do
      resources :sessions, :only => [:new, :create, :destroy]
 
      match "/" => "listings#home"
+     match "/landing" => "listings#landing"
      match "/signup" => "users#new"
      match "/signin" => "sessions#new"
      match "/signout" => "sessions#destroy"
